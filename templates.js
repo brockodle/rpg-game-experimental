@@ -1,54 +1,58 @@
 "use strict";
 
+
 function getmod(tomod) {
-    if (tomod = 30) {
-        return 10;
+
+    let outmod;
+    if (tomod < 30) {
+        outmod = 10;
     }
-    if (tomod >= 28) {
-        return 9;
+    if (tomod < 29) {
+        outmod = 9;
     }
-    if (tomod >= 26) {
-        return 8;
+    if (tomod < 27) {
+        outmod = 8;
     }
-    if (tomod >= 24) {
-        return 7
+    if (tomod < 25) {
+        outmod = 7
     }
-    if (tomod >= 22) {
-        return 6;
+    if (tomod < 23) {
+        outmod = 6;
     }
-    if (tomod >= 20) {
-        return 5;
+    if (tomod < 21) {
+        outmod = 5;
     }
-    if (tomod >= 18) {
-        return 4;
+    if (tomod < 19) {
+        outmod = 4;
     }
-    if (tomod >= 16) {
-        return 3;
+    if (tomod < 17) {
+        outmod = 3;
     }
-    if (tomod >= 14) {
-        return 2;
+    if (tomod < 15) {
+        outmod = 2;
     }
-    if (tomod >= 12) {
-        return 1;
+    if (tomod < 13) {
+        outmod = 1;
     }
-    if (tomod >= 10) {
-        return 0;
+    if (tomod < 11) {
+        outmod = 0;
     }
-    if (tomod >= 8) {
-        return -1;
+    if (tomod < 9) {
+        outmod = -1;
     }
-    if (tomod >= 6) {
-        return -2;
+    if (tomod < 7) {
+        outmod = -2;
     }
-    if (tomod >= 4) {
-        return -3;
+    if (tomod < 5) {
+        outmod = -3;
     }
-    if (tomod >= 2) {
-        return -4;
+    if (tomod < 3) {
+        outmod = -4;
     }
-    if (tomod >= 1) {
-        return -5;
+    if (tomod < 1) {
+        outmod = -6;
     }
+    return outmod;
 };
 
 function commitcharacter() {
@@ -58,17 +62,17 @@ function commitcharacter() {
 class player {
     constructor(name, exp, lvl) {
         this.name = name;
-        this.str = makestat("str");
+        this.str = makestat(Math.round(Math.random() * 18), "str");
         this.strmod = getmod(this.str);
-        this.dex = makestat("dex");
+        this.dex = makestat(Math.round(Math.random() * 18), "dex");
         this.dexmod = getmod(this.dex);
-        this.wis = makestat("wis");
+        this.wis = makestat(Math.round(Math.random() * 18), "wis");
         this.wismod = getmod(this.wis);
-        this.int = makestat("int");
+        this.int = makestat(Math.round(Math.random() * 18), "int");
         this.intmod = getmod(this.int);
-        this.cha = makestat("cha");
+        this.cha = makestat(Math.round(Math.random() * 18), "cha");
         this.chamod = getmod(this.cha);
-        this.con = makestat("con");
+        this.con = makestat(Math.round(Math.random() * 18), "con");
         this.conmod = getmod(this.con);
         this.exp = exp;
         this.lvl = lvl;
@@ -104,22 +108,20 @@ class magicobj {
     }
 };
 
-function makestat(stat) {
-    console.log('making stats', stat);
+function makestat(innum, stat) {
 
-    const inblock = document.getElementById(stat);
+    console.log(innum, stat);
 
-    console.log(inblock);
-
-    const statcurr = Math.round(Math.random() * 18);
-    const statisovermin = statcurr > 6;
+    const statisovermin = innum >= 6;
+    const statref = document.getElementById(stat);
 
     if (statisovermin) {
-        inblock.value = statcurr;
-        return statcurr;
-    } else {
-        console.log("FALSE D:");
-        makestat(stat);
+        statref.value = innum;
+        return innum;
+    }
+    else {
+        console.log("failed, restart function");
+        return makestat(Math.round(Math.random() * 18), stat);
     }
 };
 
