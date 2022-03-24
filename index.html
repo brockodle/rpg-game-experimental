@@ -5,14 +5,23 @@
 </head>
 
 <body>
-    <input id="str" />
-    <input id="dex" />
-    <input id="con" />
-    <input id="int" />
-    <input id="wis" />
-    <input id="cha" />
+    <div id="statrollers">
+        <input id="str" />
+        <button id="rollstat-str">Roll STR</button>
+        <input id="dex" />
+        <button id="rollstat-dex">Roll DEX</button>
+        <input id="con" />
+        <button id="rollstat-con">Roll CON</button>
+        <input id="int" />
+        <button id="rollstat-int">Roll INT</button>
+        <input id="wis" />
+        <button id="rollstat-int">Roll WIS</button>
+        <input id="cha" />
+        <button id="rollstat-cha">Roll CHA</button>
+    </div>
     <hr />
-    <button id="rollstat" onclick="makestat()">Roll Stat</button>
+    <button id="applycharacter" onclick="commitcharacter()">Commit Stats</button>
+
     <script src="templates.js" type="text/javascript"></script>
 </body>
 
