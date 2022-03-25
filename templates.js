@@ -9,10 +9,23 @@ function buildstatvisuals() {
         console.log(s);
 
         const outdiv = document.getElementById(`${s.id}-slider`);
+
         console.log(outdiv);
+
         outdiv.innerHTML = thisplayer[s.id];
         $(outdiv).width((Math.round((thisplayer[s.id] / 20) * 100)) + "%");
+        $(outdiv).wrap(`<div class='sliderwrap' style='height:${$(outdiv).outerHeight()}px' ></div>`);
     }
+}
+
+function chgdiv(st) {
+
+    console.log(st);
+
+    const divchg = document.getElementById(`${st}-slider`);
+    const divreroll = document.getElementById(`${st}`)
+    divchg.innerHTML = divreroll.value;
+    $(divchg).width((Math.round((divreroll.value / 20) * 100)) + "%");
 }
 
 function getmod(tomod) {
@@ -133,8 +146,7 @@ function makestat(innum, stat) {
     if (statisovermin) {
         statref.value = innum;
         return innum;
-    }
-    else {
+    } else {
         console.log("failed, restart function");
         return makestat(Math.round(Math.random() * 18), stat);
     }
@@ -142,3 +154,5 @@ function makestat(innum, stat) {
 
 let thisplayer = new player("Bobbalobba the Great", 0, 1);
 console.log(thisplayer);
+
+buildstatvisuals();
