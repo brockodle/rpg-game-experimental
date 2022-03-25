@@ -1,1 +1,47 @@
+* {
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size:16px;
+}
 
+#statrollers {
+    padding:20px;
+    display:flex;
+    flex-flow:row wrap;
+}
+
+.statbox {
+    width:48%;
+    padding:1%;
+}
+
+button {
+    padding:12px;
+    border-radius:10px;
+    border:none;
+    background-color:antiquewhite;
+    margin-right:10px;
+}
+
+button:hover {
+    cursor:normal;
+    background-color:rgba(250,235,215,0.8);
+}
+
+input {
+    padding:8px;
+}
+
+#charactersliders {
+    width:49%;
+    padding:15px;
+    display:flex;
+    flex-flow:column wrap;
+}
+
+.statslider {
+    width:100%;
+    background-color:aquamarine;
+    padding:10px;
+    border:solid 1px black;
+    margin-bottom:5px;
+}

@@ -1,5 +1,19 @@
 "use strict";
 
+function buildstatvisuals() {
+
+    const stats = $('.instat');
+    console.log(stats);
+
+    for (let s of stats) {
+        console.log(s);
+
+        const outdiv = document.getElementById(`${s.id}-slider`);
+        console.log(outdiv);
+        outdiv.innerHTML = thisplayer[s.id];
+        $(outdiv).width((Math.round((thisplayer[s.id] / 20) * 100)) + "%");
+    }
+}
 
 function getmod(tomod) {
 
@@ -76,6 +90,7 @@ class player {
         this.conmod = getmod(this.con);
         this.exp = exp;
         this.lvl = lvl;
+
         /*this.class = {
             addskill1,
             addskill2,

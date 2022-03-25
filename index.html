@@ -1,27 +1,59 @@
 <!DOCTYPE html>
 
 <head>
-
+    <link href="main.css" rel="stylesheet" />
+    <script src="node_modules/jquery/dist/jquery.min.js" ></script>
 </head>
 
 <body>
     <div id="statrollers">
-        <input id="str" />
-        <button id="rollstat-str">Roll STR</button>
-        <input id="dex" />
-        <button id="rollstat-dex">Roll DEX</button>
-        <input id="con" />
-        <button id="rollstat-con">Roll CON</button>
-        <input id="int" />
-        <button id="rollstat-int">Roll INT</button>
-        <input id="wis" />
-        <button id="rollstat-int">Roll WIS</button>
-        <input id="cha" />
-        <button id="rollstat-cha">Roll CHA</button>
+
+        <div class="statbox">
+            <button id="rollstat-str" onclick="makestat(Math.round(Math.random() * 18), 'str');buildstatvisuals();">Re-roll STR</button>
+            <input id="str" class="instat" />
+        </div>
+
+        <div class="statbox">
+            <button id="rollstat-dex">Re-roll DEX</button>
+            <input id="dex" class="instat" />
+        </div>
+
+        <div class="statbox">
+            <button id="rollstat-con">Re-roll CON</button>
+            <input id="con" class="instat" />
+        </div>
+
+        <div class="statbox">
+            <button id="rollstat-int">Re-roll INT</button>
+            <input id="int" class="instat"/>
+        </div>
+
+        <div class="statbox">
+            <button id="rollstat-int">Re-roll WIS</button>
+            <input id="wis" class="instat" />
+        </div>
+
+        <div class="statbox">
+            <button id="rollstat-cha">Re-roll CHA</button>
+            <input id="cha" class="instat" />
+        </div>
+
     </div>
+
     <hr />
     <button id="applycharacter" onclick="commitcharacter()">Commit Stats</button>
+    <hr/>
 
+    <div id="charactersliders">
+        <div id="str-slider" class="statslider"></div>
+        <div id="dex-slider" class="statslider"></div>
+        <div id="con-slider" class="statslider"></div>
+        <div id="int-slider" class="statslider"></div>
+        <div id="wis-slider" class="statslider"></div>
+        <div id="cha-slider" class="statslider"></div>
+    </div>
+
+    <script src="interactions.js" type="text/javascript" ></script>
     <script src="templates.js" type="text/javascript"></script>
 </body>
 
