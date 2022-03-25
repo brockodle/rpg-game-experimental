@@ -3,16 +3,12 @@
 function buildstatvisuals() {
 
     const stats = $('.instat');
-    console.log(stats);
 
     for (let s of stats) {
-        console.log(s);
 
         const outdiv = document.getElementById(`${s.id}-slider`);
 
-        console.log(outdiv);
-
-        outdiv.innerHTML = thisplayer[s.id];
+        outdiv.innerHTML = `<strong>${s.id.toUpperCase().slice(0,3)}</strong> ${s.value}`;
         $(outdiv).width((Math.round((thisplayer[s.id] / 20) * 100)) + "%");
         $(outdiv).wrap(`<div class='sliderwrap' style='height:${$(outdiv).outerHeight()}px' ></div>`);
     }
@@ -20,11 +16,9 @@ function buildstatvisuals() {
 
 function chgdiv(st) {
 
-    console.log(st);
-
     const divchg = document.getElementById(`${st}-slider`);
     const divreroll = document.getElementById(`${st}`)
-    divchg.innerHTML = divreroll.value;
+    divchg.innerHTML = `<strong>${divreroll.id.toUpperCase().slice(0,3)}</strong> ${divreroll.value}`;
     $(divchg).width((Math.round((divreroll.value / 20) * 100)) + "%");
 }
 
@@ -81,10 +75,6 @@ function getmod(tomod) {
     }
     return outmod;
 };
-
-function commitcharacter() {
-    const currstats = document.getElementById("statrollers");
-}
 
 class player {
     constructor(name, exp, lvl) {
