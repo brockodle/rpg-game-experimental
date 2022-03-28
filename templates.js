@@ -8,9 +8,12 @@ function buildstatvisuals() {
 
         const outdiv = document.getElementById(`${s.id}-slider`);
 
-        outdiv.innerHTML = `<strong>${s.id.toUpperCase().slice(0,3)}</strong> ${s.value}`;
-        $(outdiv).width((Math.round((thisplayer[s.id] / 20) * 100)) + "%");
-        $(outdiv).wrap(`<div class='sliderwrap' style='height:${$(outdiv).outerHeight()}px' ></div>`);
+        $(outdiv).animate({
+            width: ((Math.round((thisplayer[s.id] / 30) * 100)) + "%")
+        }, function() {
+            outdiv.innerHTML = `<strong>${s.id.toUpperCase().slice(0,3)}</strong> ${s.value}`;
+            $(outdiv).hide().wrap(`<div class='sliderwrap' style='height:${$(outdiv).outerHeight()}px' ></div>`).show();
+        })
     }
 }
 
@@ -19,7 +22,10 @@ function chgdiv(st) {
     const divchg = document.getElementById(`${st}-slider`);
     const divreroll = document.getElementById(`${st}`)
     divchg.innerHTML = `<strong>${divreroll.id.toUpperCase().slice(0,3)}</strong> ${divreroll.value}`;
-    $(divchg).width((Math.round((divreroll.value / 20) * 100)) + "%");
+
+    $(divchg).delay(100).animate({
+        width: Math.round((divreroll.value / 30) * 100) + '%'
+    })
 }
 
 function getmod(tomod) {
@@ -93,13 +99,14 @@ class player {
         this.conmod = getmod(this.con);
         this.exp = exp;
         this.lvl = lvl;
-
-        /*this.class = {
+        this.class = function(addskill1, addskill2, hpmod) {
             addskill1,
             addskill2,
             hpmod
         };
-        this.hp = this.class.hpmod + conmod; */
+        this.hp = function() {
+            return ((this.conmod * 2) + this.str);
+        }
     }
 };
 
@@ -143,6 +150,6 @@ function makestat(innum, stat) {
 };
 
 let thisplayer = new player("Bobbalobba the Great", 0, 1);
-console.log(thisplayer);
+console.log(thisplayer.hp());
 
 buildstatvisuals();

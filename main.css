@@ -20,7 +20,7 @@ button {
     border: none;
     background-color: antiquewhite;
     margin-right: 10px;
-    width:125px;
+    width: 125px;
 }
 
 button:hover {
@@ -40,7 +40,7 @@ input {
 }
 
 .statslider {
-    width: 100%;
+    width: 0;
     background-color: aquamarine;
     padding: 10px;
     margin-bottom: 5px;
@@ -54,4 +54,13 @@ input {
     width: 100%;
     margin-bottom: 5px;
     border-radius: 10px;
+}
+
+#bestchoiceskill {
+    width: 49%;
+}
+
+#classpick {
+    font-size: 36px;
+    font-weight: bold;
 }
