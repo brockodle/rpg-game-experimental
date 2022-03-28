@@ -20,7 +20,6 @@
 
         for (let stat of currstats) {
             stat.disabled = true;
-            const shtml = stat.innerHTML;
 
             $(stat).css({
                 'width':'98%',
