@@ -39,8 +39,8 @@
 
 function classdistro(topskills) {
     console.log(topskills);
-    const v1 = topskills[0];
-    const v2 = topskills[1];
+    let v1 = topskills[0];
+    let v2 = topskills[1];
 
     console.log(v1, v2);
     const getkeys = function (from) {
@@ -48,14 +48,23 @@ function classdistro(topskills) {
     };
     const classdiv = document.getElementById('classpick');
     const classchoice = '';
-    const consolestatement = `${getkeys(v1)} and ${getkeys(v2)} make for a good barbarian`;
-
-    if (getkeys(v1) == 'str' || getkeys(v1) == 'con') {
-        if (getkeys(v2) == 'str' || getkeys(v2) == 'con') {
-            console.log(consolestatement);
-        }
+    let consolestatement = function(i1, i2, classc){
+        return `${i1} and ${i2} make for a good ${classc}`;
     }
 
+    if (getkeys(v1) == 'str' && getkeys(v2) == 'con') {
+        const classchoice = 'Barbarian!'
+        console.log(consolestatement(getkeys(v1), getkeys(v2), classchoice));
+        classdiv.innerHTML = classchoice;
+    }
+    if (getkeys(v1) == 'str' && getkeys(v2) == 'dex') {
+        const classchoice = 'Fighter!';
+        console.log(consolestatement(getkeys(v1), getkeys(v2), classchoice));
+        classdiv.innerHTML = classchoice;
+    }
+    else {
+        return;
+    }
 }
 
 function acquireclass() {
