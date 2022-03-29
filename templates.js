@@ -11,7 +11,7 @@ function buildstatvisuals() {
         $(outdiv).animate({
             width: ((Math.round((thisplayer[s.id] / 30) * 100)) + "%")
         }, function() {
-            outdiv.innerHTML = `<strong>${s.id.toUpperCase().slice(0,3)}</strong> ${s.value}`;
+            outdiv.innerHTML = `<strong>${s.id.toUpperCase().slice(0, 3)}</strong> ${s.value}`;
             $(outdiv).hide().wrap(`<div class='sliderwrap' style='height:${$(outdiv).outerHeight()}px' ></div>`).show();
         })
     }
@@ -21,11 +21,12 @@ function chgdiv(st) {
 
     const divchg = document.getElementById(`${st}-slider`);
     const divreroll = document.getElementById(`${st}`)
-    divchg.innerHTML = `<strong>${divreroll.id.toUpperCase().slice(0,3)}</strong> ${divreroll.value}`;
+    divchg.innerHTML = `<strong>${divreroll.id.toUpperCase().slice(0, 3)}</strong> ${divreroll.value}`;
+    thisplayer[st] = Number(divreroll.value);
 
     $(divchg).delay(100).animate({
         width: Math.round((divreroll.value / 30) * 100) + '%'
-    })
+    });
 }
 
 function getmod(tomod) {
@@ -135,8 +136,6 @@ class magicobj {
 
 function makestat(innum, stat) {
 
-    console.log(innum, stat);
-
     const statisovermin = innum >= 6;
     const statref = document.getElementById(stat);
 
@@ -144,12 +143,10 @@ function makestat(innum, stat) {
         statref.value = innum;
         return innum;
     } else {
-        console.log("failed, restart function");
         return makestat(Math.round(Math.random() * 18), stat);
     }
 };
 
 let thisplayer = new player("Bobbalobba the Great", 0, 1);
-console.log(thisplayer.hp());
 
 buildstatvisuals();
