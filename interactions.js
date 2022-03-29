@@ -1,12 +1,12 @@
 "use strict";
 
-(function() {
+(function () {
     const btnparent = document.getElementById('statrollers');
     const rerollbtns = btnparent.getElementsByTagName('button');
     const commitbtn = document.getElementById('applycharacter');
 
     for (let b of rerollbtns) {
-        b.addEventListener('click', function() {
+        b.addEventListener('click', function () {
             const randn = Math.round(Math.random() * 18);
             const id = this.id.slice(9);
             makestat(randn, id);
@@ -15,7 +15,7 @@
         })
     }
 
-    commitbtn.addEventListener('click', function() {
+    commitbtn.addEventListener('click', function () {
         const currstats = document.getElementsByClassName("instat");
         const statcollect = document.getElementById("statrollers");
         const rerollbtns = statcollect.getElementsByTagName("button");
@@ -39,19 +39,23 @@
 
 function classdistro(topskills) {
     console.log(topskills);
-    const v1 = Object.keys(topskills[0]);
-    const v2 = Object.keys(topskills[1]);
+    const v1 = topskills[0];
+    const v2 = topskills[1];
 
-    console.log(v1[0], v2[0]);
+    console.log(v1, v2);
+    const getkeys = function (from) {
+        return Object.keys(from);
+    };
     const classdiv = document.getElementById('classpick');
+    const classchoice = '';
+    const consolestatement = `${getkeys(v1)} and ${getkeys(v2)} make for a good barbarian`;
 
-    if (v1[0] === 'str' && v2[0] === 'con') {
-        classdiv.innerHTML = `Barbarian!`;
-    } else if (v1[0] === 'dex' && v2[0] === 'wis') {
-        classdiv.innerHTML = `Monk!`;
-    } else {
-        return;
+    if (getkeys(v1) == 'str' || getkeys(v1) == 'con') {
+        if (getkeys(v2) == 'str' || getkeys(v2) == 'con') {
+            console.log(consolestatement);
+        }
     }
+
 }
 
 function acquireclass() {
@@ -64,8 +68,6 @@ function acquireclass() {
         arrv.push(n);
 
         const orderedv = arrv.sort((a, b) => a - b).reverse().slice(0, 2);
-        console.log(orderedv);
-
         const arrout = [];
 
         for (let s of skillar) {
@@ -73,6 +75,7 @@ function acquireclass() {
             if (Number(Object.values(s)) === orderedv[0] || Number(Object.values(s)) === orderedv[1]) {
                 arrout.push(s);
                 if (arrout.length === 2) {
+                    console.log(arrout);
                     classdistro(arrout);
                 }
             }
