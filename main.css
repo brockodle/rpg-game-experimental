@@ -3,6 +3,13 @@
     font-size: 16px;
 }
 
+#reroll {
+    width:98%;
+    padding:1%;
+    font-size:24px;
+    text-align: center;
+}
+
 #statrollers {
     padding: 20px;
     display: flex;
@@ -61,6 +68,6 @@ input {
 }
 
 #classpick {
-    font-size: 36px;
+    font-size: 28px;
     font-weight: bold;
 }

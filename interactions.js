@@ -4,16 +4,9 @@
     const btnparent = document.getElementById('statrollers');
     const rerollbtns = btnparent.getElementsByTagName('button');
     const commitbtn = document.getElementById('applycharacter');
-
-    for (let b of rerollbtns) {
-        b.addEventListener('click', function () {
-            const randn = Math.round(Math.random() * 18);
-            const id = this.id.slice(9);
-            makestat(randn, id);
-            chgdiv(id);
-            acquireclass();
-        })
-    }
+    let rerollct = 3;
+    const rerolldiv = document.getElementById('reroll');
+    rerolldiv.innerHTML = `REROLLS: ${rerollct}`;
 
     commitbtn.addEventListener('click', function () {
         const currstats = document.getElementsByClassName("instat");
@@ -34,6 +27,28 @@
             $(sl).hide(200).off();
         }
     });
+
+    for (let b of rerollbtns) {
+        b.addEventListener('click', function () {
+            if (rerollct === 0) {
+                commitbtn.click();
+                return;
+            }
+            else {
+                rerollct--;
+                rerolldiv.innerHTML = `REROLLS: ${rerollct}`;
+                const randn = Math.round(Math.random() * 18);
+                const id = this.id.slice(9);
+                makestat(randn, id);
+                chgdiv(id);
+                acquireclass();
+                if (rerollct === 0){
+                    $(rerollbtns).text('Commit Stats');
+                }
+            }
+        })
+    }
+
     acquireclass();
 }())
 
@@ -47,20 +62,59 @@ function classdistro(topskills) {
         return Object.keys(from);
     };
     const classdiv = document.getElementById('classpick');
-    const classchoice = '';
-    let consolestatement = function(i1, i2, classc){
+    let consolestatement = function (i1, i2, classc) {
         return `${i1} and ${i2} make for a good ${classc}`;
     }
 
     if (getkeys(v1) == 'str' && getkeys(v2) == 'con') {
-        const classchoice = 'Barbarian!'
+        const classchoice = 'Barbarian';
         console.log(consolestatement(getkeys(v1), getkeys(v2), classchoice));
-        classdiv.innerHTML = classchoice;
+        classdiv.innerHTML = `The <span style="color:red;font-size:28px;">${classchoice.toString()}</span> class!`
+    }
+    if (getkeys(v1) == 'str' && getkeys(v2) == 'cha') {
+        const classchoice = 'Paladin'
+        console.log(consolestatement(getkeys(v1), getkeys(v2), classchoice));
+        classdiv.innerHTML = `The <span style="color:red;font-size:28px;">${classchoice.toString()}</span> class!`
     }
     if (getkeys(v1) == 'str' && getkeys(v2) == 'dex') {
-        const classchoice = 'Fighter!';
+        const classchoice = 'Fighter';
         console.log(consolestatement(getkeys(v1), getkeys(v2), classchoice));
-        classdiv.innerHTML = classchoice;
+        classdiv.innerHTML = `The <span style="color:red;font-size:28px;">${classchoice.toString()}</span> class!`
+    }
+    if (getkeys(v1) == 'dex' && getkeys(v2) == 'wis') {
+        const classchoice = 'Monk or Ranger';
+        console.log(consolestatement(getkeys(v1), getkeys(v2), classchoice));
+        classdiv.innerHTML = `The <span style="color:red;font-size:28px;">${classchoice.toString()}</span> class!`
+    }
+    if (getkeys(v1) == 'dex' && getkeys(v2) == 'int') {
+        const classchoice = 'Rogue, Wizard or Artificer';
+        console.log(consolestatement(getkeys(v1), getkeys(v2), classchoice));
+        classdiv.innerHTML = `The <span style="color:red;font-size:28px;">${classchoice.toString()}</span> class!`
+    }
+    if (getkeys(v1) == 'dex' && getkeys(v2) == 'cha') {
+        const classchoice = 'Bard';
+        console.log(consolestatement(getkeys(v1), getkeys(v2), classchoice));
+        classdiv.innerHTML = `The <span style="color:red;font-size:28px;">${classchoice.toString()}</span> class!`
+    }
+    if (getkeys(v1) == 'con' && getkeys(v2) == 'cha') {
+        const classchoice = 'Sorcerer or Warlock';
+        console.log(consolestatement(getkeys(v1), getkeys(v2), classchoice));
+        classdiv.innerHTML = `The <span style="color:red;font-size:28px;">${classchoice.toString()}</span> class!`
+    }
+    if (getkeys(v1) == 'con' && getkeys(v2) == 'int') {
+        const classchoice = 'Wizard or Artificer';
+        console.log(consolestatement(getkeys(v1), getkeys(v2), classchoice));
+        classdiv.innerHTML = `The <span style="color:red;font-size:28px;">${classchoice.toString()}</span> class!`
+    }
+    if (getkeys(v1) == 'str' && getkeys(v2) == 'wis') {
+        const classchoice = 'Cleric';
+        console.log(consolestatement(getkeys(v1), getkeys(v2), classchoice));
+        classdiv.innerHTML = `The <span style="color:red;font-size:28px;">${classchoice.toString()}</span> class!`
+    }
+    if (getkeys(v1) == 'con' && getkeys(v2) == 'wis') {
+        const classchoice = 'Druid';
+        console.log(consolestatement(getkeys(v1), getkeys(v2), classchoice));
+        classdiv.innerHTML = `The <span style="color:red;font-size:28px;">${classchoice.toString()}</span> class!`
     }
     else {
         return;
